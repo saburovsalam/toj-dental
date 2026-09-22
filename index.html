@@ -7,7 +7,68 @@
   <title>TOJ DENTAL — Стоматологическая клиника</title>
   <meta name="description" content="TOJ DENTAL — современная стоматологическая клиника. Лечение, имплантация, протезирование, ортодонтия и эстетическая стоматология.">
 
-  <style>
+  <style> 
+    /* TOJ DENTAL — Clinic Gallery */
+#clinic{
+  padding:100px 0;
+  background:#f7f3ec;
+}
+
+#clinic .section-text{
+  max-width:650px;
+  margin:18px 0 45px;
+  color:#706b63;
+  line-height:1.7;
+}
+
+.clinic-gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-auto-rows:280px;
+  gap:16px;
+}
+
+.clinic-gallery img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:4px;
+  transition:transform .4s ease;
+}
+
+.clinic-gallery img:first-child{
+  grid-column:span 2;
+  grid-row:span 2;
+}
+
+.clinic-gallery img:hover{
+  transform:scale(1.015);
+}
+
+@media(max-width:768px){
+  #clinic{
+    padding:70px 0;
+  }
+
+  .clinic-gallery{
+    grid-template-columns:repeat(2,1fr);
+    grid-auto-rows:210px;
+    gap:10px;
+  }
+
+  .clinic-gallery img:first-child{
+    grid-column:span 2;
+    grid-row:span 2;
+  }
+}
+
+@media(max-width:480px){
+  .clinic-gallery{
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:170px;
+  }
+}
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
 
@@ -440,7 +501,27 @@
     </div>
   </div>
 </section>
+<section id="clinic">
+  <div class="container">
+    <div class="eyebrow">TOJ DENTAL</div>
+    <h2>Наша клиника</h2>
+    <p class="section-text">
+      Современное пространство, передовое оборудование и комфорт для каждого пациента.
+    </p>
 
+    <div class="clinic-gallery">
+      <img src="IMG_0835.jpeg" alt="TOJ DENTAL">
+      <img src="IMG_0836.jpeg" alt="Интерьер TOJ DENTAL">
+      <img src="IMG_0837.jpeg" alt="Ресепшен TOJ DENTAL">
+      <img src="IMG_0838.jpeg" alt="Стоматологический кабинет">
+      <img src="IMG_0839.jpeg" alt="Клиника TOJ DENTAL">
+      <img src="IMG_0840.jpeg" alt="Зона ожидания TOJ DENTAL">
+      <img src="IMG_0841.jpeg" alt="Интерьер клиники">
+      <img src="IMG_0842.jpeg" alt="Фасад TOJ DENTAL">
+      <img src="IMG_0843.jpeg" alt="TOJ DENTAL Clinic">
+    </div>
+  </div>
+</section>
 
 <section class="dark" id="doctors">
   <div class="container">
