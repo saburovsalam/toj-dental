@@ -11,150 +11,138 @@
 /* ===== TOJ DENTAL — PREMIUM CLINIC GALLERY ===== */
 
 #clinic{
-  padding:110px 0;
+  padding:80px 0;
   background:#f7f3ec;
-  overflow:hidden;
-}
-
-#clinic .eyebrow{
-  color:#b58a47;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:14px;
-}
-
-#clinic h2{
-  font-size:clamp(38px,5vw,64px);
-  line-height:1.05;
-  letter-spacing:-.035em;
-  margin:0;
-  color:#181715;
 }
 
 #clinic .section-text{
-  max-width:720px;
-  margin:22px 0 55px;
+  max-width:650px;
+  margin:16px 0 34px;
   color:#706b63;
   line-height:1.7;
-  font-size:18px;
 }
 
+/* GALLERY */
 .clinic-gallery{
   display:grid;
-  grid-template-columns:repeat(12,1fr);
-  grid-auto-flow:dense;
-  gap:14px;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:420px 190px;
+  gap:12px;
+  position:relative;
 }
 
+/* все фото */
 .clinic-gallery img{
   width:100%;
   height:100%;
-  display:block;
   object-fit:cover;
+  display:block;
   border-radius:18px;
-  cursor:pointer;
-  transition:
-    transform .55s cubic-bezier(.2,.7,.2,1),
-    filter .55s ease,
-    box-shadow .55s ease;
+  transition:transform .35s ease, filter .35s ease;
 }
 
-/* Главное фото */
-.clinic-gallery img:nth-child(1){
-  grid-column:span 12;
-  height:620px;
+/* главное фото */
+.clinic-gallery img:first-child{
+  grid-column:1 / 5;
+  grid-row:1;
 }
 
-/* 2 + 3 */
-.clinic-gallery img:nth-child(2),
+/* четыре следующих */
+.clinic-gallery img:nth-child(2){
+  grid-column:1;
+  grid-row:2;
+}
+
 .clinic-gallery img:nth-child(3){
-  grid-column:span 6;
-  height:390px;
+  grid-column:2;
+  grid-row:2;
 }
 
-/* 4 + 5 */
 .clinic-gallery img:nth-child(4){
-  grid-column:span 7;
-  height:480px;
+  grid-column:3;
+  grid-row:2;
 }
 
 .clinic-gallery img:nth-child(5){
-  grid-column:span 5;
-  height:480px;
+  grid-column:4;
+  grid-row:2;
 }
 
-/* 6 + 7 */
-.clinic-gallery img:nth-child(6),
-.clinic-gallery img:nth-child(7){
-  grid-column:span 6;
-  height:400px;
-}
-
-/* Фасад */
-.clinic-gallery img:nth-child(8),
-.clinic-gallery img:nth-child(9){
-  grid-column:span 6;
-  height:430px;
+/* остальные пока скрываем */
+.clinic-gallery img:nth-child(n+6){
+  display:none;
 }
 
 @media (hover:hover){
   .clinic-gallery img:hover{
     transform:scale(1.015);
-    filter:brightness(.94);
-    box-shadow:0 22px 55px rgba(24,23,21,.14);
+    filter:brightness(.96);
   }
 }
 
-@media(max-width:900px){
+/* TABLET */
+@media(max-width:800px){
+
   #clinic{
-    padding:80px 0;
-  }
-
-  .clinic-gallery img:nth-child(1){
-    grid-column:span 12;
-    height:520px;
-  }
-
-  .clinic-gallery img:nth-child(n+2){
-    grid-column:span 6;
-    height:360px;
-  }
-}
-
-@media(max-width:600px){
-  #clinic{
-    padding:70px 0;
-  }
-
-  #clinic .section-text{
-    font-size:17px;
-    margin-bottom:35px;
+    padding:60px 0;
   }
 
   .clinic-gallery{
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:360px 165px 165px;
     gap:10px;
   }
 
+  .clinic-gallery img:first-child{
+    grid-column:1 / 3;
+    grid-row:1;
+  }
+
+  .clinic-gallery img:nth-child(2){
+    grid-column:1;
+    grid-row:2;
+  }
+
+  .clinic-gallery img:nth-child(3){
+    grid-column:2;
+    grid-row:2;
+  }
+
+  .clinic-gallery img:nth-child(4){
+    grid-column:1;
+    grid-row:3;
+  }
+
+  .clinic-gallery img:nth-child(5){
+    grid-column:2;
+    grid-row:3;
+  }
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+  #clinic{
+    padding:48px 0 55px;
+  }
+
+  #clinic .section-text{
+    margin-bottom:26px;
+  }
+
+  .clinic-gallery{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:330px 145px 145px;
+    gap:8px;
+  }
+
   .clinic-gallery img{
-    border-radius:12px;
+    border-radius:14px;
   }
 
-  .clinic-gallery img:nth-child(1){
-    grid-column:span 12;
-    height:470px;
-  }
-
-  .clinic-gallery img:nth-child(n+2){
-    grid-column:span 6;
-    height:245px;
-  }
-
-  .clinic-gallery img:nth-child(8),
-  .clinic-gallery img:nth-child(9){
-    grid-column:span 12;
-    height:330px;
+  .clinic-gallery img:first-child{
+    grid-column:1 / 3;
+    grid-row:1;
   }
 }
     *{box-sizing:border-box;margin:0;padding:0}
