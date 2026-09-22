@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ec">
+  <title>TOJ DENTAL — Стоматологическая клиника</title>
+  <meta name="description" content="TOJ DENTAL — современная стоматологическая клиника. Лечение, имплантация, протезирование, ортодонтия и эстетическая стоматология.">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    :root{
+      --gold:#b58a47;
+      --gold-dark:#84622f;
+      --cream:#f7f3ec;
+      --white:#fff;
+      --dark:#181715;
+      --muted:#706b63;
+      --line:#e6ddd0;
+    }
+
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      color:var(--dark);
+      background:var(--cream);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    .container{
+      width:min(1120px,calc(100% - 40px));
+      margin:auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(247,243,236,.94);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(181,138,71,.18);
+    }
+
+    nav{
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      font-family:Georgia,serif;
+      font-size:23px;
+      letter-spacing:2px;
+      font-weight:600;
+    }
+
+    .brand span{color:var(--gold)}
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 24px;
+      border-radius:100px;
+      font-weight:600;
+      transition:.25s;
+      border:1px solid var(--gold);
+    }
+
+    .btn-gold{
+      color:white;
+      background:linear-gradient(135deg,#c69a54,#8b642d);
+      box-shadow:0 12px 30px rgba(139,100,45,.18);
+    }
+
+    .btn-light{
+      background:rgba(255,255,255,.65);
+      color:var(--dark);
+    }
+
+    .hero{
+      min-height:calc(100vh - 76px);
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      padding:80px 0;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(210,171,105,.24),transparent 70%);
+      right:-100px;
+      top:40px;
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      color:var(--gold-dark);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:22px;
+    }
+
+    h1{
+      font-family:Georgia,serif;
+      font-weight:400;
+      font-size:clamp(48px,8vw,92px);
+      line-height:.98;
+      max-width:850px;
+      letter-spacing:-3px;
+    }
+
+    h1 span{
+      color:var(--gold);
+      font-style:italic;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:18px;
+      max-width:600px;
+      margin:28px 0 34px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .trust{
+      margin-top:55px;
+      display:flex;
+      gap:34px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .trust b{
+      display:block;
+      color:var(--dark);
+      font-family:Georgia,serif;
+      font-size:23px;
+      font-weight:400;
+    }
+
+    section{padding:100px 0}
+
+    .section-title{
+      font-family:Georgia,serif;
+      font-size:clamp(38px,6vw,64px);
+      font-weight:400;
+      line-height:1.05;
+      margin-bottom:18px;
+    }
+
+    .lead{
+      max-width:650px;
+      color:var(--muted);
+      margin-bottom:45px;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.7);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:30px;
+      min-height:210px;
+      transition:.25s;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 45px rgba(50,40,25,.07);
+    }
+
+    .number{
+      color:var(--gold);
+      font-size:13px;
+      margin-bottom:45px;
+    }
+
+    .card h3{
+      font-family:Georgia,serif;
+      font-size:24px;
+      font-weight:400;
+      margin-bottom:8px;
+    }
+
+    .card p{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .dark{
+      background:#1d1b18;
+      color:white;
+    }
+
+    .dark .eyebrow{color:#d5ad6d}
+    .dark .lead{color:#aaa49a}
+
+    .doctors{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+
+    .doctor{
+      border:1px solid #38342e;
+      padding:30px;
+      border-radius:24px;
+      min-height:190px;
+    }
+
+    .doctor small{
+      color:#c69a54;
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
+
+    .doctor h3{
+      font-family:Georgia,serif;
+      font-weight:400;
+      font-size:27px;
+      margin:20px 0 8px;
+    }
+
+    .doctor p{color:#aaa49a}
+
+    .contactbox{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:50px;
+      display:grid;
+      grid-template-columns:1.3fr 1fr;
+      gap:50px;
+    }
+
+    .contact-items{
+      display:grid;
+      gap:18px;
+    }
+
+    .contact-item{
+      border-bottom:1px solid var(--line);
+      padding-bottom:17px;
+    }
+
+    .contact-item small{
+      color:var(--muted);
+      display:block;
+      margin-bottom:3px;
+    }
+
+    footer{
+      padding:35px 0;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media(max-width:760px){
+      .container{width:min(100% - 28px,1120px)}
+      .navlinks a:not(.btn){display:none}
+      nav{height:68px}
+      .brand{font-size:19px}
+      .navlinks .btn{min-height:42px;padding:0 15px;font-size:12px}
+
+      .hero{
+        min-height:auto;
+        padding:85px 0 70px;
+      }
+
+      h1{
+        font-size:52px;
+        letter-spacing:-2px;
+      }
+
+      .hero p{font-size:16px}
+
+      .actions{
+        display:grid;
+        grid-template-columns:1fr;
+      }
+
+      .actions .btn{width:100%}
+
+      section{padding:75px 0}
+
+      .services,
+      .doctors,
+      .contactbox{
+        grid-template-columns:1fr;
+      }
+
+      .card{min-height:180px}
+      .contactbox{padding:28px;gap:35px}
+
+      .trust{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="brand"><span>TOJ</span> DENTAL</a>
+
+      <div class="navlinks">
+        <a href="#services">Услуги</a>
+        <a href="#doctors">Врачи</a>
+        <a href="#contacts">Контакты</a>
+        <a class="btn btn-gold" href="tel:+992999999003">Записаться</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Dental Clinic · Dushanbe</div>
+
+    <h1>
+      Здоровая улыбка.<br>
+      <span>Уверенность</span> каждый день.
+    </h1>
+
+    <p>
+      Современная стоматология с комплексным подходом к здоровью
+      и эстетике вашей улыбки.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-gold" href="tel:+992999999003">
+        Записаться на приём
+      </a>
+
+      <a class="btn btn-light"
+         href="https://wa.me/992999999003"
+         target="_blank">
+        Написать в WhatsApp
+      </a>
+    </div>
+
+    <div class="trust">
+      <div><b>01</b>Современный подход</div>
+      <div><b>02</b>Опытные специалисты</div>
+      <div><b>03</b>Комплексное лечение</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="services">
+  <div class="container">
+
+    <div class="eyebrow">Направления</div>
+    <h2 class="section-title">Стоматология полного цикла</h2>
+
+    <p class="lead">
+      От профилактики и лечения до восстановления функции
+      и эстетики улыбки.
+    </p>
+
+    <div class="services">
+
+      <div class="card">
+        <div class="number">01</div>
+        <h3>Имплантация</h3>
+        <p>Современное восстановление утраченных зубов.</p>
+      </div>
+
+      <div class="card">
+        <div class="number">02</div>
+        <h3>Протезирование</h3>
+        <p>Коронки и ортопедические конструкции.</p>
+      </div>
+
+      <div class="card">
+        <div class="number">03</div>
+        <h3>Лечение зубов</h3>
+        <p>Терапевтическая стоматология и сохранение зубов.</p>
+      </div>
+
+      <div class="card">
+        <div class="number">04</div>
+        <h3>Ортодонтия</h3>
+        <p>Брекеты и элайнеры для коррекции прикуса.</p>
+      </div>
+
+      <div class="card">
+        <div class="number">05</div>
+        <h3>Эстетика</h3>
+        <p>Работа с формой, цветом и эстетикой улыбки.</p>
+      </div>
+
+      <div class="card">
+        <div class="number">06</div>
+        <h3>Гигиена и отбеливание</h3>
+        <p>Профессиональная чистка и уход за улыбкой.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="dark" id="doctors">
+  <div class="container">
+
+    <div class="eyebrow">Команда</div>
+    <h2 class="section-title">Врачи TOJ DENTAL</h2>
+
+    <p class="lead">
+      Специалисты клиники работают в ключевых направлениях
+      современной стоматологии.
+    </p>
+
+    <div class="doctors">
+
+      <div class="doctor">
+        <small>Стоматолог</small>
+        <h3>Муминов Наим Назимович</h3>
+        <p>Терапия · Ортопедия · Протезирование · Имплантация</p>
+      </div>
+
+      <div class="doctor">
+        <small>Хирург-имплантолог</small>
+        <h3>Имомов Сухроб</h3>
+        <p>Хирургическая стоматология и имплантация.</p>
+      </div>
+
+      <div class="doctor">
+        <small>Стоматолог</small>
+        <h3>Бакиев Фаррух</h3>
+        <p>Врач-стоматолог TOJ DENTAL.</p>
+      </div>
+
+      <div class="doctor">
+        <small>Хирург-имплантолог</small>
+        <h3>Зиёев Худжамурод</h3>
+        <p>Хирургия · Имплантация · Терапия · Ортопедия</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="contacts">
+  <div class="container">
+
+    <div class="contactbox">
+
+      <div>
+        <div class="eyebrow">Контакты</div>
+        <h2 class="section-title">Будем рады видеть вас</h2>
+
+        <p class="lead">
+          Свяжитесь с клиникой для консультации и записи на приём.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-gold" href="tel:+992999999003">
+            Позвонить
+          </a>
+
+          <a class="btn btn-light"
+             href="https://wa.me/992999999003"
+             target="_blank">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-items">
+
+        <div class="contact-item">
+          <small>Адрес</small>
+          <strong>ул. Карамова, 6</strong>
+        </div>
+
+        <div class="contact-item">
+          <small>Телефон</small>
+          <a href="tel:+992999999003">
+            <strong>+992 99 999 90 03</strong>
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <small>Instagram</small>
+          <a href="https://instagram.com/toj_dental" target="_blank">
+            <strong>@toj_dental</strong>
+          </a>
+        </div>
+
+        <a class="btn btn-light"
+           href="https://yandex.ru/maps/org/toj_dental/72941128306"
+           target="_blank">
+          Открыть на карте →
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 TOJ DENTAL · Dental Clinic
+  </div>
+</footer>
+
+</body>
+</html>
