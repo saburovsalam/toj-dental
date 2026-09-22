@@ -468,7 +468,38 @@
         gap:25px;
       }
     }
-  </style>
+  
+/* ===== PREMIUM V2 MOTION + MOBILE UX ===== */
+body{overflow-x:hidden}
+header{transition:box-shadow .35s ease,background .35s ease}
+header.scrolled{background:rgba(247,243,236,.88);box-shadow:0 12px 35px rgba(32,24,15,.08)}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn:after{content:"";position:absolute;inset:-2px;transform:translateX(-120%) skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transition:transform .7s ease;z-index:-1}
+.btn:hover:after{transform:translateX(120%) skewX(-20deg)}
+.btn:hover{transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.services .card:nth-child(2),.doctors .doctor:nth-child(2){transition-delay:.08s}
+.services .card:nth-child(3){transition-delay:.16s}
+.services .card:nth-child(4){transition-delay:.24s}
+.services .card:nth-child(5){transition-delay:.32s}
+.services .card:nth-child(6){transition-delay:.40s}
+.clinic-gallery{overflow:hidden}
+.clinic-gallery img{will-change:transform}
+.clinic-gallery img:hover{transform:scale(1.025)}
+.mobile-nav{display:none}
+@media(max-width:760px){
+  body{padding-bottom:86px}
+  .mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:14px;right:14px;bottom:14px;z-index:200;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.88);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(181,138,71,.18);border-radius:24px;box-shadow:0 16px 45px rgba(25,20,15,.14)}
+  .mobile-nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:#817b72}
+  .mobile-nav b{font-size:18px;line-height:1;color:var(--gold-dark)}
+  .hero:after{width:280px;height:280px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
 
 <body>
@@ -706,6 +737,26 @@
     © 2026 TOJ DENTAL · Dental Clinic
   </div>
 </footer>
+<nav class="mobile-nav" aria-label="Мобильная навигация">
+  <a href="#"><b>⌂</b>Главная</a>
+  <a href="#services"><b>◇</b>Услуги</a>
+  <a href="tel:+992999999003"><b>＋</b>Запись</a>
+  <a href="#contacts"><b>⌖</b>Контакты</a>
+</nav>
 
+<script>
+const revealTargets=document.querySelectorAll('.eyebrow,.section-title,.lead,.card,.doctor,.contactbox,.clinic-gallery');
+revealTargets.forEach(el=>el.classList.add('reveal'));
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}})
+},{threshold:.12,rootMargin:'0px 0px -40px'});
+revealTargets.forEach(el=>io.observe(el));
+const header=document.querySelector('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>16),{passive:true});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const hero=document.querySelector('.hero .container');
+  addEventListener('scroll',()=>{if(scrollY<innerHeight)hero.style.transform='translate3d(0,'+(scrollY*.055)+'px,0)'},{passive:true});
+}
+</script>
 </body>
 </html>
