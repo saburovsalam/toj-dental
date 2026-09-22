@@ -8,65 +8,153 @@
   <meta name="description" content="TOJ DENTAL — современная стоматологическая клиника. Лечение, имплантация, протезирование, ортодонтия и эстетическая стоматология.">
 
   <style> 
-    /* TOJ DENTAL — Clinic Gallery */
+/* ===== TOJ DENTAL — PREMIUM CLINIC GALLERY ===== */
+
 #clinic{
-  padding:100px 0;
+  padding:110px 0;
   background:#f7f3ec;
+  overflow:hidden;
+}
+
+#clinic .eyebrow{
+  color:#b58a47;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+
+#clinic h2{
+  font-size:clamp(38px,5vw,64px);
+  line-height:1.05;
+  letter-spacing:-.035em;
+  margin:0;
+  color:#181715;
 }
 
 #clinic .section-text{
-  max-width:650px;
-  margin:18px 0 45px;
+  max-width:720px;
+  margin:22px 0 55px;
   color:#706b63;
   line-height:1.7;
+  font-size:18px;
 }
 
 .clinic-gallery{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:280px;
-  gap:16px;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-flow:dense;
+  gap:14px;
 }
 
 .clinic-gallery img{
   width:100%;
   height:100%;
-  object-fit:cover;
   display:block;
-  border-radius:4px;
-  transition:transform .4s ease;
+  object-fit:cover;
+  border-radius:18px;
+  cursor:pointer;
+  transition:
+    transform .55s cubic-bezier(.2,.7,.2,1),
+    filter .55s ease,
+    box-shadow .55s ease;
 }
 
-.clinic-gallery img:first-child{
-  grid-column:span 2;
-  grid-row:span 2;
+/* Главное фото */
+.clinic-gallery img:nth-child(1){
+  grid-column:span 12;
+  height:620px;
 }
 
-.clinic-gallery img:hover{
-  transform:scale(1.015);
+/* 2 + 3 */
+.clinic-gallery img:nth-child(2),
+.clinic-gallery img:nth-child(3){
+  grid-column:span 6;
+  height:390px;
 }
 
-@media(max-width:768px){
+/* 4 + 5 */
+.clinic-gallery img:nth-child(4){
+  grid-column:span 7;
+  height:480px;
+}
+
+.clinic-gallery img:nth-child(5){
+  grid-column:span 5;
+  height:480px;
+}
+
+/* 6 + 7 */
+.clinic-gallery img:nth-child(6),
+.clinic-gallery img:nth-child(7){
+  grid-column:span 6;
+  height:400px;
+}
+
+/* Фасад */
+.clinic-gallery img:nth-child(8),
+.clinic-gallery img:nth-child(9){
+  grid-column:span 6;
+  height:430px;
+}
+
+@media (hover:hover){
+  .clinic-gallery img:hover{
+    transform:scale(1.015);
+    filter:brightness(.94);
+    box-shadow:0 22px 55px rgba(24,23,21,.14);
+  }
+}
+
+@media(max-width:900px){
+  #clinic{
+    padding:80px 0;
+  }
+
+  .clinic-gallery img:nth-child(1){
+    grid-column:span 12;
+    height:520px;
+  }
+
+  .clinic-gallery img:nth-child(n+2){
+    grid-column:span 6;
+    height:360px;
+  }
+}
+
+@media(max-width:600px){
   #clinic{
     padding:70px 0;
   }
 
+  #clinic .section-text{
+    font-size:17px;
+    margin-bottom:35px;
+  }
+
   .clinic-gallery{
-    grid-template-columns:repeat(2,1fr);
-    grid-auto-rows:210px;
     gap:10px;
   }
 
-  .clinic-gallery img:first-child{
-    grid-column:span 2;
-    grid-row:span 2;
+  .clinic-gallery img{
+    border-radius:12px;
   }
-}
 
-@media(max-width:480px){
-  .clinic-gallery{
-    grid-template-columns:1fr 1fr;
-    grid-auto-rows:170px;
+  .clinic-gallery img:nth-child(1){
+    grid-column:span 12;
+    height:470px;
+  }
+
+  .clinic-gallery img:nth-child(n+2){
+    grid-column:span 6;
+    height:245px;
+  }
+
+  .clinic-gallery img:nth-child(8),
+  .clinic-gallery img:nth-child(9){
+    grid-column:span 12;
+    height:330px;
   }
 }
     *{box-sizing:border-box;margin:0;padding:0}
